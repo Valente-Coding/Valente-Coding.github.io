@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Goncalo Valente - Portfolio</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+    <script src='main.js'></script>
+</head>
+<style>
+    @font-face {
+        font-family: NamunPen;
+        src: url(NanumPenScript-Regular.ttf);
+    }
+
+    @keyframes DoorLeftAnimation {
+        0% {
+            left: 0vw;
+        }
+
+        20% {
+            left: -2vw;
+        }
+
+        40% {
+            left: -2vw;
+        }
+
+        100% {
+            left: -100vw;
+        }
+    }
+
+    @keyframes DoorRightAnimation {
+        0% {
+            right: 0vw;
+        }
+
+        20% {
+            right: -2vw;
+        }
+
+        40% {
+            right: -2vw;
+        }
+
+        100% {
+            right: -100vw;
+        }
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgb(66, 66, 66);
+        overflow: hidden;
+    }
+
+    .VaultDoorContainer {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        display: flex;
+    }
+
+    .DoorLeft {
+        position: relative;
+        width: 49.9%;
+        height: 100%;
+        background-color: aquamarine;
+        display: grid;
+        place-items: center;
+        background-image: url("23249_steel-texture-png.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        transition: left 1.7s;
+        left: 0;
+    }
+
+    .DoorRight {
+        position: relative;
+        width: 49.9%;
+        height: 100%;
+        margin-left: 0.2%;
+        background-color: beige;
+        background-image: url("23249_steel-texture-png.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        transform: rotateY(180deg);
+        transition: right 1.7s;
+        right: 0;
+    }
+
+    .DoorScroll {
+        position: relative;
+        width: 30vw;
+        height: 30vw;
+        left: 50%;
+        z-index: 1;
+        background-image: url("diallockoutside.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        display: grid;
+        place-items: center;
+    }
+
+    .DoorScrollDial {
+        width: 81.5%;
+        height: 81.5%;
+        background-image: url("diallockinside.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        transform: rotate(0deg);
+    }
+
+    .NoteContainer {
+        position: absolute;
+        width: 25vw;
+        height: 30vh;
+        background-image: url("sticky_note_PNG18959.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        transform: rotateY(180deg);
+        top: 70%;
+        left: 3%;
+    }
+
+    .NoteMessage {
+        font-family: NamunPen;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transform: rotateY(180deg) rotate(3deg);
+        top: 25%;
+    }
+
+    .NoteCode {
+        font-size: 5vh;
+        color: rgb(199, 24, 24);
+    }
+
+    .CodeDirections {
+        font-size: 3.5vh;
+    }
+
+    .SafeLeftOpen {
+        animation-name: DoorLeftAnimation;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+    }
+
+    .SafeRightOpen {
+        animation-name: DoorRightAnimation;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+    }
+
+    .FlipSecretFileContainer {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        place-items: center;
+        transform: translate(0px, 100vh);
+        transition: transform 1s ease-out;
+    }
+
+    .OnScreen {
+        transform: translate(0px, 0vh);
+    }
+
+    .FrontFileCover {
+        width: 800px;
+        height: 1030px;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        top: 10%;
+        pointer-events: none;
+    }
+
+    .FrontFileImage {
+        width: 100%;
+        height: 100%;
+        transform: rotateY(0deg);
+        transform-origin: center left;
+        transition: transform 1.2s;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+    }
+
+    .FileOpen {
+        transform: rotateY(180deg);
+    }
+
+    .BackFileCover {
+        width: 800px;
+        height: 1030px;
+        position: absolute;
+        display: grid;
+        place-items: center start;
+        top: 10%;
+    }
+
+    .BackFileImage {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+    }
+
+    .Pages {
+        width: 90%;
+        height: 90%;
+        position: relative;
+        top: 0%;
+        left: 0%;
+        border-radius: 0.2vw;
+    }
+
+    .PageFile {
+        width: 100%;
+        height: 100%;
+        transform: rotateY(0deg);
+        transform-origin: center left;
+        transition: transform 1.2s;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+    }
+
+    .PageOpen {
+        transform: rotateY(180deg);
+    }
+</style>
+<body>
+    <div class="VaultDoorContainer">
+        <div class="DoorLeft">
+            <div class="DoorScroll">
+                <div class="DoorScrollDial"></div>
+            </div>
+
+            <div class="NoteContainer">
+                <p class="NoteMessage"><span class="NoteCode">20-00-10-60</span></br><span class="CodeDirections">R-L-R-L</span></br></br><span class="Directions">R - Right | L - Left</span></p>
+            </div>
+        </div>
+        <div class="DoorRight">
+
+        </div>
+    </div>
+
+    <div class="FlipSecretFileContainer">
+        <div class="BackFileCover">
+            <img class="BackFileImage" src="back_file.png" alt="">
+            <div class="Pages">
+                <img class="PageFile" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
+                <img class="PageFile" src="Record_Criminal.png" data-originalimage="Record_Criminal.png" alt="">
+            </div>
+        </div>
+        <div class="FrontFileCover">
+            <img class="FrontFileImage" src="front_file.png" alt="">
+        </div>
+    </div>
+
+
+    <script>
+        var currentCode = 0
+        var dialCode = [72, 0, 36, 216]
+        var dialLock = document.getElementsByClassName("DoorScrollDial")[0]
+        var dialCurrentScroll = 0
+        var zindexFlips = 1;
+        var slideAmount = window.innerHeight
+
+        dialLock.addEventListener('wheel', function() {
+            if (event.deltaY < 0)
+            {
+                dialCurrentScroll = dialCurrentScroll - 2
+                
+                if (currentCode % 2 == 0) {
+                    var checkScroll = dialCurrentScroll
+                    if (checkScroll > 0) {
+                        checkScroll = checkScroll - 360
+                    }
+
+                    var currentAngle = checkScroll * -1
+
+                    if (currentAngle == dialCode[currentCode]) {
+                        currentCode++;
+                    }
+                } else {
+                    currentCode = 0;
+                }
+            }
+            else if (event.deltaY > 0)
+            {
+                dialCurrentScroll = dialCurrentScroll + 2
+
+                if (currentCode % 2 == 0) {
+                    currentCode = 0;
+                } else {
+                    var checkScroll = dialCurrentScroll
+                    if (checkScroll > 0) {
+                        checkScroll = checkScroll - 360
+                    }
+
+                    var currentAngle = checkScroll * -1
+
+                    if (currentAngle == dialCode[currentCode]) {
+                        currentCode++;
+                    }
+                }
+            }
+
+            if (dialCurrentScroll == 360 || dialCurrentScroll == -360) {
+                dialCurrentScroll = 0;
+            }
+            dialLock.style.transform = `rotate(${dialCurrentScroll}deg)`; 
+
+
+            console.log(currentCode)
+            if (currentCode == 4) {
+                OpenSafe();
+            }
+        });
+
+        function OpenSafe() {
+            var LeftDoor = document.getElementsByClassName("DoorLeft")[0]
+            var RightDoor = document.getElementsByClassName("DoorRight")[0]
+
+            LeftDoor.classList.add("SafeLeftOpen");
+            RightDoor.classList.add("SafeRightOpen");
+
+            setTimeout(() => {
+                SlideFile();
+            }, 1000);
+        }
+
+        function SlideFile() {
+            slideAmount = 0;
+
+            /* FlipSecretFileContainer = document.getElementsByClassName("FlipSecretFileContainer")[0]
+
+            FlipSecretFileContainer.classList.add("OnScreen");
+
+            setTimeout(() => {
+                OpenFile();
+            }, 2000); */
+        }
+
+        function OpenFile() {
+            var FrontFileImage = document.getElementsByClassName("FrontFileImage")[0]
+
+            FrontFileImage.classList.add("FileOpen");
+
+            setTimeout(() => {
+                FrontFileImage.src = "back_file.png";
+                FrontFileImage.style.zIndex = zindexFlips
+                zindexFlips++;
+            }, 300);
+        }
+
+        window.onbeforeunload = function () {
+            
+            window.scrollTo(0, 0);
+        }
+
+        var AllPages = document.getElementsByClassName("Pages")
+        var readyForEvents = false
+
+        for (var i = 0; i < AllPages.length; i++) {
+            AllPages[i].onmouseup = (ev) => {
+                var thisElem = ev.target;
+                if (thisElem.classList[1] == "PageOpen") {
+                    thisElem.classList.remove("PageOpen");
+
+                    setTimeout(() => {
+                        thisElem.src = thisElem.dataset.originalimage;
+                        thisElem.style.zIndex = zindexFlips
+                        zindexFlips++;
+                    }, 300);
+                } else {
+                    thisElem.classList.add("PageOpen");
+
+                    setTimeout(() => {
+                        thisElem.src = "scramble_page.jpg";
+                        thisElem.style.zIndex = zindexFlips
+                        zindexFlips++;
+                    }, 300);
+                }
+            };
+        }
+
+        readyForEvents = true
+
+        document.onmousemove = function(ev){
+            console.log("Moving!")
+            FlipSecretFileContainer = document.getElementsByClassName("FlipSecretFileContainer")[0]
+            var windowWidth = window.innerWidth
+            var windowHeight = window.innerHeight
+
+            var windowCenter = {x: windowHeight / 2, y: windowHeight / 2}
+
+            var translatePosition = {x: -ev.clientX / 2, y: (-ev.clientY / 2)  + slideAmount}
+            FlipSecretFileContainer.style.transform = "translate(" + translatePosition.x + "px, " + translatePosition.y + "px)"
+        };
+    </script>
+</body>
+</html>
