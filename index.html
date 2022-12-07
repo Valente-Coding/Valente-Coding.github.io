@@ -65,6 +65,9 @@
         height: 100vh;
         position: fixed;
         display: flex;
+        top: 0px;
+        left: 0px;
+        background-color: rgb(66, 66, 66);
     }
 
     .DoorLeft {
@@ -243,8 +246,41 @@
     .PageOpen {
         transform: rotateY(180deg);
     }
+
+    .Table {
+        width: 200%;
+        height: 200%;
+        position: absolute;
+        background-image: url("table3.jpg");
+        background-position: center;
+        pointer-events: none;
+    }
+
+    .HandcuffsContainer {
+        width: 200%;
+        height: 200%;
+        position: absolute;
+        pointer-events: none;
+    }
+
+    .Handcuffs {
+        width: 800px;
+        height: 400px;
+        position: relative;
+        top: 0%;
+        left: 80%;
+    }
 </style>
 <body>
+    
+    
+    <div class="Table"></div>
+    <!-- <div class="HandcuffsContainer">
+        <img class="Handcuffs" src="handcuffs.png" />
+    </div> -->
+
+    
+
     <div class="VaultDoorContainer">
         <div class="DoorLeft">
             <div class="DoorScroll">
@@ -281,6 +317,7 @@
         var dialCurrentScroll = 0
         var zindexFlips = 1;
         var slideAmount = window.innerHeight
+        var canMove = false;
 
         dialLock.addEventListener('wheel', function() {
             if (event.deltaY < 0)
@@ -335,11 +372,16 @@
         });
 
         function OpenSafe() {
+            var VaultContainer = document.getElementsByClassName("VaultDoorContainer")[0]
             var LeftDoor = document.getElementsByClassName("DoorLeft")[0]
             var RightDoor = document.getElementsByClassName("DoorRight")[0]
-
+            
             LeftDoor.classList.add("SafeLeftOpen");
             RightDoor.classList.add("SafeRightOpen");
+
+            setTimeout(() => {
+                VaultContainer.style.backgroundColor  = "transparent";
+            }, 100);
 
             setTimeout(() => {
                 SlideFile();
@@ -349,13 +391,13 @@
         function SlideFile() {
             slideAmount = 0;
 
-            /* FlipSecretFileContainer = document.getElementsByClassName("FlipSecretFileContainer")[0]
+            FlipSecretFileContainer = document.getElementsByClassName("FlipSecretFileContainer")[0]
 
             FlipSecretFileContainer.classList.add("OnScreen");
 
             setTimeout(() => {
                 OpenFile();
-            }, 2000); */
+            }, 2000);
         }
 
         function OpenFile() {
@@ -367,6 +409,10 @@
                 FrontFileImage.src = "back_file.png";
                 FrontFileImage.style.zIndex = zindexFlips
                 zindexFlips++;
+
+                FlipSecretFileContainer = document.getElementsByClassName("FlipSecretFileContainer")[0]
+                FlipSecretFileContainer.style.transition = "none";
+                canMove = true;
             }, 300);
         }
 
@@ -404,15 +450,47 @@
         readyForEvents = true
 
         document.onmousemove = function(ev){
-            console.log("Moving!")
+
+            if (!canMove) return;
+
             FlipSecretFileContainer = document.getElementsByClassName("FlipSecretFileContainer")[0]
+            TableContainer = document.getElementsByClassName("Table")[0]
+            HandcuffsContainer = document.getElementsByClassName("HandcuffsContainer")[0]
+
             var windowWidth = window.innerWidth
             var windowHeight = window.innerHeight
 
-            var windowCenter = {x: windowHeight / 2, y: windowHeight / 2}
+            var windowCenter = {w: windowWidth / 2, h: windowHeight / 2}
+            var mousePositionFromCenter = {x: ev.clientX - windowCenter.w, y: ev.clientY - windowCenter.h} 
 
-            var translatePosition = {x: -ev.clientX / 2, y: (-ev.clientY / 2)  + slideAmount}
-            FlipSecretFileContainer.style.transform = "translate(" + translatePosition.x + "px, " + translatePosition.y + "px)"
+
+
+            var containerWidth = FlipSecretFileContainer.offsetWidth
+            var containerHeight = FlipSecretFileContainer.offsetHeight
+            var FiletranslatePosition = {x: windowCenter.w + -mousePositionFromCenter.x - (containerWidth / 2), y: windowCenter.h + -mousePositionFromCenter.y - (containerHeight / 2) + slideAmount, speed: 0.52}
+            FlipSecretFileContainer.style.transform = "translate(" + FiletranslatePosition.x * FiletranslatePosition.speed + "px, " + FiletranslatePosition.y * FiletranslatePosition.speed + "px)"
+
+
+            var TablecontainerWidth = TableContainer.offsetWidth
+            var TablecontainerHeight = TableContainer.offsetHeight
+            var TabletranslatePosition = {x: windowCenter.w + -mousePositionFromCenter.x - (TablecontainerWidth / 2), y: windowCenter.h + -mousePositionFromCenter.y - (TablecontainerHeight / 2), speed: 0.5}
+            TableContainer.style.transform = "translate(" + TabletranslatePosition.x * TabletranslatePosition.speed + "px, " + TabletranslatePosition.y * TabletranslatePosition.speed + "px)"
+
+
+            /* var HandcuffscontainerWidth = HandcuffsContainer.offsetWidth
+            var HandcuffscontainerHeight = HandcuffsContainer.offsetHeight
+            var HandcuffstranslatePosition = {x: windowCenter.w + -mousePositionFromCenter.x - (HandcuffscontainerWidth / 2), y: windowCenter.h + -mousePositionFromCenter.y - (HandcuffscontainerHeight / 2), speed: 0.5}
+            HandcuffsContainer.style.transform = "translate(" + HandcuffstranslatePosition.x * HandcuffstranslatePosition.speed + "px, " + HandcuffstranslatePosition.y * HandcuffstranslatePosition.speed + "px)" */
+
+            console.log(FiletranslatePosition)
+        };
+
+
+        document.onkeypress = function (e) {
+            e = e || window.event;
+            if (e.keyCode == 32) {
+                OpenSafe();
+            }
         };
     </script>
 </body>
