@@ -305,6 +305,11 @@
         text-align: left;
         line-height: 33.2px;
     }
+
+    a {
+        color: cornflowerblue;
+        pointer-events: all;
+    }
 </style>
 <body>
     
@@ -341,7 +346,7 @@
                     <p class="RecordDate">15/09/2019</p>
                     <p class="RecordTitle">Freelancing In The Market</p>
                     <p class="RecordDescription">After spending all his summer holidays working on projects he finally decided</p>
-                    <p class="RecordDescription2">to earn for it. His main goal was to be accepted in a succeceful store where only the best ones could sell on it. In one year span he made multiple private projects as a freelancer with a low cost to make him self on the top of the list in the market.</p>
+                    <p class="RecordDescription2">to earn for it. His main goal was to be accepted in a succeceful store where only the best ones could sell on it. In one year span he made multiple private projects as a freelancer with a low cost to make him self on the top of the list in the market.<br><br>Projects between the one year time span:<br>[Tablet (Made with HTML, CSS, JS and LUA)] - <a data-link="https://www.youtube.com/watch?v=VdajYx5xCWU">Source Here</a><br>[Phone (Made with HTML, CSS, JS and Lua)] - <a data-link="https://www.youtube.com/watch?v=TZ9mO1YYe9U">Source Here</a><br><br>After making this two projects and more, he applied to the store of his dreams. But little did he knew other 400 people did the same... Anyhow he got accepted and got the owner impressed. At that time the store had a team of 10 workers and only the best ones.<br><br>His Most Popular Script In The Store:<br>[Advanced Cryptocurrency (Made with HTML, CSS, JS, LUA and SQL)] - <a data-link="https://modit.store/products/kofcoin-advanced-crypto-mining-script?variant=39396309696695">Source Here</a></p>
                 </div>
                 <div class="RecordPageContainer PageFile">
                     <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
@@ -357,7 +362,7 @@
                     <p class="RecordDate">10/01/2018</p>
                     <p class="RecordTitle">Start Scripting</p>
                     <p class="RecordDescription">Even with all those programming languages he had to learn, he started learning</p>
-                    <p class="RecordDescription2">a new one by himself. LUA was the new language and he applied it to scripts for a game known as "Fivem". It made him curious as to what he could do with it, so he started doing a lot in the Fivem community. Some public, others private. We have at least one case with over 50 projects, but we know that he has done over 150.<br>Here are some links we have in the system of certain projects he publishes to the public:<br>[Cooker Job (His first release) - 30000+ Views] - https://forum.cfx.re/t/esx-cooker-job-based-on-unicorn-job/256558<br>[Garage (Most Popular) - 85000+ Views] - https://forum.cfx.re/t/esx-kuana-garage-3-0-make-your-garage-system-more-realistic/996140</p>
+                    <p class="RecordDescription2">a new one by himself. LUA was the new language and he applied it to scripts for a game known as "Fivem". It made him curious as to what he could do with it, so he started doing a lot in the Fivem community. Some public, others private. We have at least one case with over 50 projects, but we know that he has done over 150.<br>Here are some links we have in the system of certain projects he publishes to the public:<br>[Cooker Job (His first release, made with LUA) - 30000+ Views] - <a data-link="https://forum.cfx.re/t/esx-cooker-job-based-on-unicorn-job/256558">Source Here</a><br>[Garage (Most Popular, made with LUA and SQL) - 85000+ Views] - <a data-link="https://forum.cfx.re/t/esx-kuana-garage-3-0-make-your-garage-system-more-realistic/996140">Source Here</a></p>
                 </div>
                 <div class="RecordPageContainer PageFile">
                     <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
@@ -373,7 +378,7 @@
                     <p class="RecordDate">25/10/2016</p>
                     <p class="RecordTitle">Gonçalo Valente's First Game</p>
                     <p class="RecordDescription">After committing his first crime, he never gave up. So he manages to find a tool</p>
-                    <p class="RecordDescription2">called "Construct 2" (a software with a simple and easy to use programming language) to make his first game. The game he made was inspired by flappy bird and got all his friends at school addicted to it. With all the positive feedback he made more levels until he made the hardest level and stopped.</p>
+                    <p class="RecordDescription2">called "Construct 2" (a software with a simple and easy to use programming language) to make his first game. The game was inspired by flappy bird and got all his friends at school addicted to it. With all the positive feedback he spent time to make more levels.</p>
                 </div>
                 <div class="RecordPageContainer PageFile">
                     <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
@@ -503,6 +508,24 @@
             window.scrollTo(0, 0);
         }
 
+
+        var AllLinks = document.getElementsByTagName("a")
+
+        for (var i = 0; i < AllLinks.length; i++) {
+            AllLinks[i].onmouseup = (ev) => {
+                var thisElem = ev.target;
+                window.open(thisElem.dataset.link, '_blank');
+            };
+
+            AllLinks[i].onmouseover = (ev) => {
+                readyForEvents = false;
+            };
+
+            AllLinks[i].onmouseout = (ev) => {
+                readyForEvents = true;
+            };
+        }
+
         var AllPages = document.getElementsByClassName("Pages")
         var readyForEvents = false
 
@@ -510,6 +533,7 @@
             AllPages[i].onmouseup = (ev) => {
                 var thisElem = ev.target;
                 if (thisElem.classList[0] == "Pages") return;
+                if (readyForEvents == false) return;
                 var imageElem = thisElem;
 
                 if (thisElem.tagName != "IMG") 
@@ -555,6 +579,9 @@
         }
 
         readyForEvents = true
+
+
+        
 
         document.onmousemove = function(ev){
 
