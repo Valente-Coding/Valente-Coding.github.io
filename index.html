@@ -1,629 +1,831 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Goncalo Valente - Portfolio</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
-    <script src='main.js'></script>
-</head>
-<style>
-    * {
-        user-select: none;
-    }
-    
-    @font-face {
-        font-family: NamunPen;
-        src: url(NanumPenScript-Regular.ttf);
-    }
-
-    @keyframes DoorLeftAnimation {
-        0% {
-            left: 0vw;
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>Goncalo Valente - Portfolio</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+        <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+        <script src='main.js'></script>
+    </head>
+    <style>
+        * {
+            user-select: none;
+        }
+        
+        @font-face {
+            font-family: NamunPen;
+            src: url(NanumPenScript-Regular.ttf);
         }
 
-        20% {
-            left: -2vw;
+        @font-face {
+            font-family: Digital;
+            src: url(DS-DIGII.TTF);
         }
 
-        40% {
-            left: -2vw;
-        }
-
-        100% {
-            left: -100vw;
-        }
-    }
-
-    @keyframes DoorRightAnimation {
-        0% {
-            right: 0vw;
-        }
-
-        20% {
-            right: -2vw;
-        }
-
-        40% {
-            right: -2vw;
-        }
-
-        100% {
-            right: -100vw;
-        }
-    }
-
-    body {
-        margin: 0;
-        padding: 0;
-        width: 100vw;
-        height: 100vh;
-        background-color: rgb(66, 66, 66);
-        overflow: hidden;
-    }
-
-    .VaultDoorContainer {
-        width: 100vw;
-        height: 100vh;
-        position: fixed;
-        display: flex;
-        top: 0px;
-        left: 0px;
-        background-color: rgb(66, 66, 66);
-    }
-
-    .DoorLeft {
-        position: relative;
-        width: 49.9%;
-        height: 100%;
-        background-color: aquamarine;
-        display: grid;
-        place-items: center;
-        background-image: url("23249_steel-texture-png.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        transition: left 1.7s;
-        left: 0;
-    }
-
-    .DoorRight {
-        position: relative;
-        width: 49.9%;
-        height: 100%;
-        margin-left: 0.2%;
-        background-color: beige;
-        background-image: url("23249_steel-texture-png.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        transform: rotateY(180deg);
-        transition: right 1.7s;
-        right: 0;
-    }
-
-    .DoorScroll {
-        position: relative;
-        width: 30vw;
-        height: 30vw;
-        left: 50%;
-        z-index: 1;
-        background-image: url("diallockoutside.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        display: grid;
-        place-items: center;
-    }
-
-    .DoorScrollDial {
-        width: 81.5%;
-        height: 81.5%;
-        background-image: url("diallockinside.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        transform: rotate(0deg);
-    }
-
-    .NoteContainer {
-        position: absolute;
-        width: 25vw;
-        height: 30vh;
-        background-image: url("sticky_note_PNG18959.png");
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-        transform: rotateY(180deg);
-        top: 70%;
-        left: 3%;
-    }
-
-    .NoteMessage {
-        font-family: NamunPen;
-        position: relative;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-        transform: rotateY(180deg) rotate(3deg);
-        top: 25%;
-    }
-
-    .NoteCode {
-        font-size: 5vh;
-        color: rgb(199, 24, 24);
-    }
-
-    .CodeDirections {
-        font-size: 3.5vh;
-    }
-
-    .SafeLeftOpen {
-        animation-name: DoorLeftAnimation;
-        animation-duration: 2s;
-        animation-fill-mode: forwards;
-    }
-
-    .SafeRightOpen {
-        animation-name: DoorRightAnimation;
-        animation-duration: 2s;
-        animation-fill-mode: forwards;
-    }
-
-    .FlipSecretFileContainer {
-        width: 100%;
-        height: 100%;
-        display: grid;
-        place-items: center;
-        transform: translate(0px, 100vh);
-        transition: transform 1s ease-out;
-    }
-
-    .OnScreen {
-        transform: translate(0px, 0vh);
-    }
-
-    .FrontFileCover {
-        width: 800px;
-        height: 1030px;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        top: 10%;
-        pointer-events: none;
-    }
-
-    .FrontFileImage {
-        width: 100%;
-        height: 100%;
-        transform: rotateY(0deg);
-        transform-origin: center left;
-        transition: transform 1.2s;
-        position: absolute;
-        top: 0%;
-        left: 0%;
-    }
-
-    .FileOpen {
-        transform: rotateY(180deg);
-    }
-
-    .BackFileCover {
-        width: 800px;
-        height: 1030px;
-        position: absolute;
-        display: grid;
-        place-items: center start;
-        top: 10%;
-    }
-
-    .BackFileImage {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0%;
-        left: 0%;
-    }
-
-    .Pages {
-        width: 90%;
-        height: 90%;
-        position: relative;
-        top: 0%;
-        left: 0%;
-        border-radius: 0.2vw;
-    }
-
-    .PageFile {
-        width: 100%;
-        height: 100%;
-        transform: rotateY(0deg);
-        transform-origin: center left;
-        transition: transform 1.2s;
-        position: absolute;
-        top: 0%;
-        left: 0%;
-    }
-
-    .PageOpen {
-        transform: rotateY(180deg);
-    }
-
-    .Table {
-        width: 200%;
-        height: 200%;
-        position: absolute;
-        background-image: url("table3.jpg");
-        background-position: center;
-        pointer-events: none;
-    }
-
-    .CriminalRecord {
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-    }
-
-    .RecordPageContainer p {
-        position: absolute;
-        pointer-events: none;
-        font-weight: bold;
-        font-size: 13px;
-    }
-
-    .RecordNumber {
-        top: 15.5%;
-        left: 20.2%;
-        text-align: center;
-    }
-
-    .RecordDate {
-        top: 20.9%;
-        left: 21.8%;
-        text-align: center;
-    }
-
-    .RecordTitle {
-        top: 24.5%;
-        left: 20%;
-        text-align: left;
-    }
-
-    .RecordDescription {
-        top: 28.3%;
-        left: 25%;
-        text-align: left;
-    }
-
-    .RecordDescription2 {
-        width: 81%;
-        height: 55.3%;
-        top: 30.8%;
-        left: 9%;
-        text-align: left;
-        line-height: 33px;
-    }
-
-    a {
-        color: cornflowerblue;
-        pointer-events: all;
-    }
-</style>
-<body>
-    
-    
-    <div class="Table"></div>
-    <!-- <div class="HandcuffsContainer">
-        <img class="Handcuffs" src="handcuffs.png" />
-    </div> -->
-
-    
-
-    <div class="VaultDoorContainer">
-        <div class="DoorLeft">
-            <div class="DoorScroll">
-                <div class="DoorScrollDial"></div>
-            </div>
-
-            <div class="NoteContainer">
-                <p class="NoteMessage"><span class="NoteCode">20-00-10-60</span></br><span class="CodeDirections">R-L-R-L</span></br></br><span class="Directions">R - Right | L - Left</span></p>
-            </div>
-        </div>
-        <div class="DoorRight">
-
-        </div>
-    </div>
-
-    <div class="FlipSecretFileContainer">
-        <div class="BackFileCover">
-            <img class="BackFileImage" src="back_file.png" alt="">
-            <div class="Pages">
-                <div class="RecordPageContainer PageFile">
-                    <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
-                    <p class="RecordNumber">6</p>
-                    <p class="RecordDate">15/09/2019</p>
-                    <p class="RecordTitle">Freelancing In The Market</p>
-                    <p class="RecordDescription">After spending all his summer holidays working on projects he finally decided</p>
-                    <p class="RecordDescription2">to earn for it. His main goal was to be accepted in a succeceful store where only the best ones could sell on it. In one year span he made multiple private projects as a freelancer with a low cost to make him self on the top of the list in the market.<br><br>Projects between the one year time span:<br>[Tablet (Made with HTML, CSS, JS and LUA)] - <a data-link="https://www.youtube.com/watch?v=VdajYx5xCWU">Source Here</a><br>[Phone (Made with HTML, CSS, JS and Lua)] - <a data-link="https://www.youtube.com/watch?v=TZ9mO1YYe9U">Source Here</a><br><br>After making this two projects and more, he applied to the store of his dreams. But little did he knew other 400 people did the same... Anyhow he got accepted and got the owner impressed. At that time the store had a team of 10 workers and only the best ones.<br><br>His Most Popular Script In The Store:<br>[Advanced Cryptocurrency (Made with HTML, CSS, JS, LUA and SQL)] - <a data-link="https://modit.store/products/kofcoin-advanced-crypto-mining-script?variant=39396309696695">Source Here</a></p>
-                </div>
-                <div class="RecordPageContainer PageFile">
-                    <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
-                    <p class="RecordNumber">5</p>
-                    <p class="RecordDate">01/02/2019</p>
-                    <p class="RecordTitle">An Illegal Internship</p>
-                    <p class="RecordDescription">In 2019, a three-month internship was offered to Gonçalo Valente</p>
-                    <p class="RecordDescription2"> in a company named "XDPEOPLE". A corporation that manufactures multiple software for retail stores and restaurants. Gonçalo was not at this level of programming, but it was not sufficient to stop him. In this internship he learned a new fundamental tool, something called heaven on the Internet, the tool was Stackoverflow. The ability to know how to look for any issue made him learn faster and succeed even more.</p>
-                </div>
-                <div class="RecordPageContainer PageFile">
-                    <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
-                    <p class="RecordNumber">4</p>
-                    <p class="RecordDate">10/01/2018</p>
-                    <p class="RecordTitle">Start Scripting</p>
-                    <p class="RecordDescription">Even with all those programming languages he had to learn, he started learning</p>
-                    <p class="RecordDescription2">a new one by himself. LUA was the new language and he applied it to scripts for a game known as "Fivem". It made him curious as to what he could do with it, so he started doing a lot in the Fivem community. Some public, others private. We have at least one case with over 50 projects, but we know that he has done over 150.<br>Here are some links we have in the system of certain projects he publishes to the public:<br>[Cooker Job (His first release, made with LUA) - 30000+ Views] - <a data-link="https://forum.cfx.re/t/esx-cooker-job-based-on-unicorn-job/256558">Source Here</a><br>[Garage (Most Popular, made with LUA and SQL) - 85000+ Views] - <a data-link="https://forum.cfx.re/t/esx-kuana-garage-3-0-make-your-garage-system-more-realistic/996140">Source Here</a></p>
-                </div>
-                <div class="RecordPageContainer PageFile">
-                    <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
-                    <p class="RecordNumber">3</p>
-                    <p class="RecordDate">15/09/2017</p>
-                    <p class="RecordTitle">A Dangerous Path</p>
-                    <p class="RecordDescription">After completing Grade 9 (Europe/Portugal Grade System), he went to apply to a</p>
-                    <p class="RecordDescription2">professional school and was accepted in a programming course. This course provides instruction in the following languages: C, C#, HTML, CSS, JS, JAVA, SQL. It completely changed his life.</p>
-                </div>
-                <div class="RecordPageContainer PageFile">
-                    <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
-                    <p class="RecordNumber">2</p>
-                    <p class="RecordDate">25/10/2016</p>
-                    <p class="RecordTitle">Gonçalo Valente's First Game</p>
-                    <p class="RecordDescription">After committing his first crime, he never gave up. So he manages to find a tool</p>
-                    <p class="RecordDescription2">called "Construct 2" (a software with a simple and easy to use programming language) to make his first game. The game was inspired by flappy bird and got all his friends at school addicted to it. With all the positive feedback he spent time to make more levels.</p>
-                </div>
-                <div class="RecordPageContainer PageFile">
-                    <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
-                    <p class="RecordNumber">1</p>
-                    <p class="RecordDate">13/07/2016</p>
-                    <p class="RecordTitle">The Start Of A Criminal Life</p>
-                    <p class="RecordDescription">Goncalo Valente began studying HTML and CSS after becoming interested in the</p>
-                    <p class="RecordDescription2">world of programming. He started doing simple texts with different fonts and colors, using images in the background, making connections with multiple pages and changing html page titles. With all that, he succeeds in creating a simple detective game with clues and prizes.</p>
-                </div>
-                <img class="PageFile" src="Record_Criminal.png" data-originalimage="Record_Criminal.png" alt="">
-            </div>
-        </div>
-        <div class="FrontFileCover">
-            <img class="FrontFileImage" src="front_file.png" alt="">
-        </div>
-    </div>
-
-
-    <script>
-        var currentCode = 0
-        var dialCode = [72, 0, 36, 216]
-        var dialLock = document.getElementsByClassName("DoorScrollDial")[0]
-        var dialCurrentScroll = 0
-        var zindexFlips = 1;
-        var slideAmount = window.innerHeight
-        var canMove = false;
-
-        dialLock.addEventListener('wheel', function() {
-            if (event.deltaY < 0)
-            {
-                dialCurrentScroll = dialCurrentScroll - 2
-                
-                if (currentCode % 2 == 0) {
-                    var checkScroll = dialCurrentScroll
-                    if (checkScroll > 0) {
-                        checkScroll = checkScroll - 360
-                    }
-
-                    var currentAngle = checkScroll * -1
-
-                    if (currentAngle == dialCode[currentCode]) {
-                        currentCode++;
-                    }
-                } else {
-                    currentCode = 0;
-                }
-            }
-            else if (event.deltaY > 0)
-            {
-                dialCurrentScroll = dialCurrentScroll + 2
-
-                if (currentCode % 2 == 0) {
-                    currentCode = 0;
-                } else {
-                    var checkScroll = dialCurrentScroll
-                    if (checkScroll > 0) {
-                        checkScroll = checkScroll - 360
-                    }
-
-                    var currentAngle = checkScroll * -1
-
-                    if (currentAngle == dialCode[currentCode]) {
-                        currentCode++;
-                    }
-                }
+        @keyframes DoorLeftAnimation {
+            0% {
+                left: 0vw;
             }
 
-            if (dialCurrentScroll == 360 || dialCurrentScroll == -360) {
-                dialCurrentScroll = 0;
+            20% {
+                left: -2vw;
             }
-            dialLock.style.transform = `rotate(${dialCurrentScroll}deg)`; 
 
-
-            console.log(currentCode)
-            if (currentCode == 4) {
-                OpenSafe();
+            40% {
+                left: -2vw;
             }
-        });
 
-        function OpenSafe() {
-            var VaultContainer = document.getElementsByClassName("VaultDoorContainer")[0]
-            var LeftDoor = document.getElementsByClassName("DoorLeft")[0]
-            var RightDoor = document.getElementsByClassName("DoorRight")[0]
-            
-            LeftDoor.classList.add("SafeLeftOpen");
-            RightDoor.classList.add("SafeRightOpen");
-
-            setTimeout(() => {
-                VaultContainer.style.backgroundColor  = "transparent";
-            }, 100);
-
-            setTimeout(() => {
-                SlideFile();
-            }, 1000);
+            100% {
+                left: -100vw;
+            }
         }
 
-        function SlideFile() {
-            slideAmount = 0;
+        @keyframes DoorRightAnimation {
+            0% {
+                right: 0vw;
+            }
 
-            FlipSecretFileContainer = document.getElementsByClassName("FlipSecretFileContainer")[0]
+            20% {
+                right: -2vw;
+            }
 
-            FlipSecretFileContainer.classList.add("OnScreen");
+            40% {
+                right: -2vw;
+            }
 
-            setTimeout(() => {
-                OpenFile();
-            }, 2000);
+            100% {
+                right: -100vw;
+            }
         }
 
-        function OpenFile() {
-            var FrontFileImage = document.getElementsByClassName("FrontFileImage")[0]
-
-            FrontFileImage.classList.add("FileOpen");
-
-            setTimeout(() => {
-                FrontFileImage.src = "back_file.png";
-                FrontFileImage.style.zIndex = zindexFlips
-                zindexFlips++;
-
-                FlipSecretFileContainer = document.getElementsByClassName("FlipSecretFileContainer")[0]
-                FlipSecretFileContainer.style.transition = "none";
-                canMove = true;
-            }, 300);
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgb(66, 66, 66);
+            overflow: hidden;
         }
 
-        window.onbeforeunload = function () {
-            
-            window.scrollTo(0, 0);
+        .VaultDoorContainer {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            display: flex;
+            top: 0px;
+            left: 0px;
+            background-color: rgb(66, 66, 66);
+        }
+
+        .DoorLeft {
+            position: relative;
+            width: 49.9%;
+            height: 100%;
+            background-color: aquamarine;
+            display: grid;
+            place-items: center;
+            background-image: url("23249_steel-texture-png.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            transition: left 1.7s;
+            left: 0;
+        }
+
+        .DoorRight {
+            position: relative;
+            width: 49.9%;
+            height: 100%;
+            margin-left: 0.2%;
+            background-color: beige;
+            background-image: url("23249_steel-texture-png.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            transform: rotateY(180deg);
+            transition: right 1.7s;
+            right: 0;
+        }
+
+        .DoorScroll {
+            position: relative;
+            width: 30vw;
+            height: 30vw;
+            left: 50%;
+            z-index: 1;
+            background-image: url("diallockoutside.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            display: grid;
+            place-items: center;
+        }
+
+        .DoorScrollDial {
+            width: 81.5%;
+            height: 81.5%;
+            background-image: url("diallockinside.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            transform: rotate(0deg);
+            display: grid;
+            place-items: center;
+        }
+
+        .ScrollTutorial {
+            width: 50%;
+            height: 50%;
+            opacity: 100%;
+            transition: opacity 0.3s;
+        }
+
+        .NoteContainer {
+            position: absolute;
+            width: 25vw;
+            height: 30vh;
+            background-image: url("sticky_note_PNG18959.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            transform: rotateY(180deg);
+            top: 70%;
+            left: 3%;
+        }
+
+        .NoteMessage {
+            font-family: NamunPen;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transform: rotateY(180deg) rotate(3deg);
+            top: 25%;
+        }
+
+        .NoteCode {
+            font-size: 5vh;
+            color: rgb(199, 24, 24);
+        }
+
+        .CodeDirections {
+            font-size: 3.5vh;
+        }
+
+        .Directions {
+            font-size: 2.5vh;
+        }
+
+        .SafeLeftOpen {
+            animation-name: DoorLeftAnimation;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+        }
+
+        .SafeRightOpen {
+            animation-name: DoorRightAnimation;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+        }
+
+        .FlipSecretFileContainer {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            place-items: center;
+            transform: translate(0px, 100vh);
+            transition: transform 1s ease-out;
+        }
+
+        .OnScreen {
+            transform: translate(0px, 0vh);
+        }
+
+        .FrontFileCover {
+            width: 800px;
+            height: 1030px;
+            position: absolute;
+            display: grid;
+            place-items: center;
+            top: 10%;
+            pointer-events: none;
+        }
+
+        .FrontFileImage {
+            width: 100%;
+            height: 100%;
+            transform: rotateY(0deg);
+            transform-origin: center left;
+            transition: transform 1.2s;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+        }
+
+        .FileOpen {
+            transform: rotateY(180deg);
+        }
+
+        .BackFileCover {
+            width: 800px;
+            height: 1030px;
+            position: absolute;
+            display: grid;
+            place-items: center start;
+            top: 10%;
+        }
+
+        .BackFileImage {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+        }
+
+        .Pages {
+            width: 90%;
+            height: 90%;
+            position: relative;
+            top: 0%;
+            left: 0%;
+            border-radius: 0.2vw;
+        }
+
+        .PageFile {
+            width: 100%;
+            height: 100%;
+            transform: rotateY(0deg);
+            transform-origin: center left;
+            transition: transform 1.2s;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+        }
+
+        .PageOpen {
+            transform: rotateY(180deg);
+        }
+
+        .Table {
+            width: 200%;
+            height: 200%;
+            position: absolute;
+            background-image: url("table3.jpg");
+            background-position: center;
+            pointer-events: none;
+        }
+
+        .CriminalRecord {
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .RecordPageContainer p {
+            position: absolute;
+            pointer-events: none;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .RecordNumber {
+            top: 15.5%;
+            left: 20.2%;
+            text-align: center;
+        }
+
+        .RecordDate {
+            top: 20.9%;
+            left: 21.8%;
+            text-align: center;
+        }
+
+        .RecordTitle {
+            top: 24.5%;
+            left: 20%;
+            text-align: left;
+        }
+
+        .RecordDescription {
+            top: 28.3%;
+            left: 25%;
+            text-align: left;
+        }
+
+        .RecordDescription2 {
+            width: 81%;
+            height: 55.3%;
+            top: 30.8%;
+            left: 9%;
+            text-align: left;
+            line-height: 33px;
+        }
+
+        a {
+            color: cornflowerblue;
+            pointer-events: all;
         }
 
 
-        var AllLinks = document.getElementsByTagName("a")
-
-        for (var i = 0; i < AllLinks.length; i++) {
-            AllLinks[i].onmouseup = (ev) => {
-                var thisElem = ev.target;
-                window.open(thisElem.dataset.link, '_blank');
-            };
-
-            AllLinks[i].onmouseover = (ev) => {
-                readyForEvents = false;
-            };
-
-            AllLinks[i].onmouseout = (ev) => {
-                readyForEvents = true;
-            };
+        .CriminalName {
+            top: 19.6%;
+            left: 17%;
+            text-align: left;
         }
 
-        var AllPages = document.getElementsByClassName("Pages")
-        var readyForEvents = false
-
-        for (var i = 0; i < AllPages.length; i++) {
-            AllPages[i].onmouseup = (ev) => {
-                var thisElem = ev.target;
-                if (thisElem.classList[0] == "Pages") return;
-                if (readyForEvents == false) return;
-                var imageElem = thisElem;
-
-                if (thisElem.tagName != "IMG") 
-                    imageElem = thisElem.children[0]
-
-                if (thisElem.classList[1] == "PageOpen" || thisElem.classList[2] == "PageOpen") {
-                    thisElem.classList.remove("PageOpen");
-
-                    setTimeout(() => {
-                        var pageTexts = thisElem.children
-                        for (var j = 0; j < pageTexts.length; j++) {
-                            var elemType = pageTexts[j].tagName
-                            if (elemType == "P") {
-                                var thisText = pageTexts[j];
-
-                                thisText.style.opacity = "100%";
-                            }
-                        }
-                        imageElem.src = imageElem.dataset.originalimage;
-                        thisElem.style.zIndex = zindexFlips
-                        zindexFlips++;
-                    }, 300);
-                } else {
-                    
-                    thisElem.classList.add("PageOpen");
-
-                    setTimeout(() => {
-                        var pageTexts = thisElem.children
-                        for (var j = 0; j < pageTexts.length; j++) {
-                            var elemType = pageTexts[j].tagName
-                            if (elemType == "P") {
-                                var thisText = pageTexts[j];
-
-                                thisText.style.opacity = "0%";
-                            }
-                        }
-                        imageElem.src = "scramble_page.jpg";
-                        thisElem.style.zIndex = zindexFlips
-                        zindexFlips++;
-                    }, 300);
-                }
-            };
+        .CriminalMaidenName {
+            top: 23.3%;
+            left: 18%;
+            text-align: left;
         }
 
-        readyForEvents = true
+        .CriminalPhone {
+            top: 23.2%;
+            left: 58%;
+            text-align: left;
+        }
 
+        .CriminalAddress {
+            top: 26.5%;
+            left: 27%;
+            text-align: left;
+        }
+
+        .CriminalCity {
+            top: 29.5%;
+            left: 18.3%;
+            text-align: left;
+        }
+
+        .CriminalDOB {
+            top: 32.4%;
+            left: 17.4%;
+            text-align: left;
+        }
+
+        .CriminalAge {
+            top: 32.4%;
+            left: 32.1%;
+            text-align: left;
+        }
+
+        .CriminalRace {
+            top: 32.4%;
+            left: 41.7%;
+            text-align: left;
+        }
+
+        .CriminalState {
+            top: 35.5%;
+            left: 18.7%;
+            text-align: left;
+        }
+
+        .CriminalCitizen {
+            top: 35.5%;
+            left: 36.6%;
+            text-align: left;
+        }
+
+        .CriminalSOC {
+            top: 35.5%;
+            left: 62.2%;
+            text-align: left;
+        }
+
+        .CriminalCC {
+            top: 38.7%;
+            left: 37%;
+            text-align: left;
+        }
+
+        .CriminalIssued {
+            top: 38.7%;
+            left: 72.8%;
+            text-align: left;
+        }
+
+        .CriminalCrimes {
+            top: 43.7%;
+            left: 16.7%;
+            text-align: left;
+        }
+
+        .CriminalConsent {
+            top: 66.4%;
+            left: 6.5%;
+            text-align: left;
+        }
+
+        .CriminalEmail {
+            top: 72.7%;
+            left: 7%;
+            text-align: left;
+        }
+
+        .CriminalSignature {
+            top: 76.5%;
+            left: 20%;
+            text-align: left;
+        }
+
+        .CriminalDate {
+            top: 76.5%;
+            left: 69.5%;
+            text-align: left;
+        }
+
+        
+        .StepsIndicatorContainer {
+            position: relative;
+            width: 20vw;
+            height: 10vh;
+            top: 0%;
+            left: 50%;
+            background-color: black;
+            z-index: 1;
+            border-radius: 0.2vw;
+            border: 10px solid gray;
+            display: grid;
+            place-items: start;
+        }
+
+        .StepsIndicator {
+            margin: 0px;
+            padding: 0px;
+            text-align: center;
+            color: red;
+            letter-spacing: 0vw;
+            font-size: 10vh;
+            font-family: Digital;
+            letter-spacing: 2.5vw;
+            margin-left: 1.85vw;
+        }
+
+    </style>
+    <body>
+        
+        
+        <div class="Table"></div>
+        <!-- <div class="HandcuffsContainer">
+            <img class="Handcuffs" src="handcuffs.png" />
+        </div> -->
 
         
 
-        document.onmousemove = function(ev){
+        <div class="VaultDoorContainer">
+            <div class="DoorLeft">
+                <div class="DoorScroll">
+                    <div class="DoorScrollDial">
+                        <img class="ScrollTutorial" src="mousescroll.png">
+                    </div>
+                </div>
 
-            if (!canMove) return;
+                <div class="StepsIndicatorContainer">
+                    <p class="StepsIndicator"></p>
+                </div>
 
-            FlipSecretFileContainer = document.getElementsByClassName("FlipSecretFileContainer")[0]
-            TableContainer = document.getElementsByClassName("Table")[0]
-            HandcuffsContainer = document.getElementsByClassName("HandcuffsContainer")[0]
+                <div class="NoteContainer">
+                    <p class="NoteMessage"><span class="NoteCode">20-0-10-60</span></br><span class="CodeDirections">Right-Left-Right-Left</span></br></br><span class="Directions">*Or Press Space To Skip*</span></p>
+                </div>
+            </div>
+            <div class="DoorRight">
 
-            var windowWidth = window.innerWidth
-            var windowHeight = window.innerHeight
+            </div>
+        </div>
 
-            var windowCenter = {w: windowWidth / 2, h: windowHeight / 2}
-            var mousePositionFromCenter = {x: ev.clientX - windowCenter.w, y: ev.clientY - windowCenter.h} 
+        <div class="FlipSecretFileContainer">
+            <div class="BackFileCover">
+                <img class="BackFileImage" src="back_file.png" alt="">
+                <div class="Pages">
+                    <div class="RecordPageContainer PageFile">
+                        <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
+                        <p class="RecordNumber">6</p>
+                        <p class="RecordDate">15/09/2019</p>
+                        <p class="RecordTitle">Freelancing In The Market</p>
+                        <p class="RecordDescription">After spending all his summer holidays working on projects he finally decided</p>
+                        <p class="RecordDescription2">to earn for it. His main goal was to be accepted in a succeceful store where only the best ones could sell on it. In one year span he made multiple private projects as a freelancer with a low cost to make him self on the top of the list in the market.<br><br>Projects between the one year time span:<br>[Tablet (Made with HTML, CSS, JS and LUA)] - <a data-link="https://www.youtube.com/watch?v=VdajYx5xCWU">Source Here</a><br>[Phone (Made with HTML, CSS, JS and LUA)] - <a data-link="https://www.youtube.com/watch?v=TZ9mO1YYe9U">Source Here</a><br><br>After making this two projects and more, he applied to the store of his dreams. But little did he knew other 400 people did the same... Anyhow he got accepted and got the owner impressed. At that time the store had a team of 10 workers and only the best ones.<br><br>His Most Popular Script In The Store:<br>[Advanced Cryptocurrency (Made with HTML, CSS, JS, LUA and SQL)] - <a data-link="https://modit.store/products/kofcoin-advanced-crypto-mining-script?variant=39396309696695">Source Here</a></p>
+                    </div>
+                    <div class="RecordPageContainer PageFile">
+                        <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
+                        <p class="RecordNumber">5</p>
+                        <p class="RecordDate">01/02/2019</p>
+                        <p class="RecordTitle">An Illegal Internship</p>
+                        <p class="RecordDescription">In 2019, a three-month internship was offered to Gonçalo Valente</p>
+                        <p class="RecordDescription2"> in a company named "XDPEOPLE". A corporation that manufactures multiple software for retail stores and restaurants. Gonçalo was not at this level of programming, but it was not sufficient to stop him. In this internship he learned a new fundamental tool, something called heaven on the Internet, the tool was Stackoverflow. The ability to know how to look for any issue made him learn faster and succeed even more.</p>
+                    </div>
+                    <div class="RecordPageContainer PageFile">
+                        <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
+                        <p class="RecordNumber">4</p>
+                        <p class="RecordDate">10/01/2018</p>
+                        <p class="RecordTitle">Start Scripting</p>
+                        <p class="RecordDescription">Even with all those programming languages he had to learn, he started learning</p>
+                        <p class="RecordDescription2">a new one by himself. LUA was the new language and he applied it to scripts for a game known as "Fivem". It made him curious as to what he could do with it, so he started doing a lot in the Fivem community. Some public, others private. We have at least one case with over 50 projects, but we know that he has done over 150.<br>Here are some links we have in the system of certain projects he publishes to the public:<br>[Cooker Job (His first release, made with LUA) - 30000+ Views] - <a data-link="https://forum.cfx.re/t/esx-cooker-job-based-on-unicorn-job/256558">Source Here</a><br>[Garage (Most Popular, made with LUA and SQL) - 85000+ Views] - <a data-link="https://forum.cfx.re/t/esx-kuana-garage-3-0-make-your-garage-system-more-realistic/996140">Source Here</a></p>
+                    </div>
+                    <div class="RecordPageContainer PageFile">
+                        <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
+                        <p class="RecordNumber">3</p>
+                        <p class="RecordDate">15/09/2017</p>
+                        <p class="RecordTitle">A Dangerous Path</p>
+                        <p class="RecordDescription">After completing Grade 9 (Europe/Portugal Grade System), he went to apply to a</p>
+                        <p class="RecordDescription2">professional school and was accepted in a programming course. This course provides instruction in the following languages: C, C#, HTML, CSS, JS, JAVA, SQL. It completely changed his life.</p>
+                    </div>
+                    <div class="RecordPageContainer PageFile">
+                        <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
+                        <p class="RecordNumber">2</p>
+                        <p class="RecordDate">25/10/2016</p>
+                        <p class="RecordTitle">Gonçalo Valente's First Game</p>
+                        <p class="RecordDescription">After committing his first crime, he never gave up. So he manages to find a tool</p>
+                        <p class="RecordDescription2">called "Construct 2" (a software with a simple and easy to use programming language) to make his first game. The game was inspired by flappy bird and got all his friends at school addicted to it. With all the positive feedback he spent time to make more levels.</p>
+                    </div>
+                    <div class="RecordPageContainer PageFile">
+                        <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
+                        <p class="RecordNumber">1</p>
+                        <p class="RecordDate">13/07/2016</p>
+                        <p class="RecordTitle">The Start Of A Criminal Life</p>
+                        <p class="RecordDescription">Goncalo Valente began studying HTML and CSS after becoming interested in the</p>
+                        <p class="RecordDescription2">world of programming. He started doing simple texts with different fonts and colors, using images in the background, making connections with multiple pages and changing html page titles. With all that, he succeeds in creating a simple detective game with clues and prizes.</p>
+                    </div>
+                    <div class="RecordPageContainer PageFile">
+                        <img class="CriminalRecord" src="Record_Criminal2.png" data-originalimage="Record_Criminal2.png" alt="">
+                        <p class="CriminalName">Gonçalo Santana De Miranda Pulido Valente</p>
+                        <p class="CriminalMaidenName">N/A</p>
+                        <p class="CriminalPhone">+351 964839246</p>
+                        <p class="CriminalAddress">*** *********</p>
+                        <p class="CriminalCity">Porto, ****-***</p>
+                        <p class="CriminalDOB">10/09/2002</p>
+                        <p class="CriminalAge">20</p>
+                        <p class="CriminalRace">N/A</p>
+                        <p class="CriminalState">Portugal</p>
+                        <p class="CriminalCitizen">Student</p>
+                        <p class="CriminalSOC">*********</p>
+                        <p class="CriminalCC">*********</p>
+                        <p class="CriminalIssued">N/A</p>
+                        <p class="CriminalCrimes">Joining the coding community and spend countless nights working on private projects.</p>
+                        <p class="CriminalConsent">N/A</p>
+                        <p class="CriminalEmail">goncalo.p.valente@hotmail.com</p>
+                        <p class="CriminalSignature">Gonçalo Valente</p>
+                        <p class="CriminalDate">02/12/2022</p>
+                    </div>
+                </div>
+            </div>
+            <div class="FrontFileCover">
+                <img class="FrontFileImage" src="front_file.png" alt="">
+            </div>
+        </div>
 
 
+        <script>
+            var currentCode = 0
+            var dialCode = [72, 0, 36, 216]
+            var dialLock = document.getElementsByClassName("DoorScrollDial")[0]
+            var StepsIndicator = document.getElementsByClassName("StepsIndicator")[0]
+            var dialCurrentScroll = 0
+            var zindexFlips = 1;
+            var slideAmount = window.innerHeight
+            var canMove = false;
+            var firstScroll = true
 
-            var containerWidth = FlipSecretFileContainer.offsetWidth
-            var containerHeight = FlipSecretFileContainer.offsetHeight
-            var FiletranslatePosition = {x: windowCenter.w + -mousePositionFromCenter.x - (containerWidth / 2), y: windowCenter.h + -mousePositionFromCenter.y - (containerHeight / 2) + slideAmount, speed: 0.52}
-            FlipSecretFileContainer.style.transform = "translate(" + FiletranslatePosition.x * FiletranslatePosition.speed + "px, " + FiletranslatePosition.y * FiletranslatePosition.speed + "px)"
+            dialLock.addEventListener('wheel', function() {
+                if (firstScroll) {
+                    firstScroll = false
+                    var ScrollTutorial = document.getElementsByClassName("ScrollTutorial")[0]
+                    ScrollTutorial.style.opacity = "0%";
+                }
+                if (event.deltaY < 0)
+                {
+                    dialCurrentScroll = dialCurrentScroll - 2
+                    
+                    if (currentCode % 2 == 0) {
+                        var checkScroll = dialCurrentScroll
+                        if (checkScroll > 0) {
+                            checkScroll = checkScroll - 360
+                        }
+
+                        var currentAngle = checkScroll * -1
+
+                        if (currentAngle == dialCode[currentCode]) {
+                            if (currentCode == 0) 
+                                StepsIndicator.innerHTML += "2"
+
+                            if (currentCode == 2) 
+                                StepsIndicator.innerHTML += "1"
+
+                            currentCode++;
+                        }
+                    } else {
+                        StepsIndicator.innerHTML = ""
+                        currentCode = 0;
+                    }
+                }
+                else if (event.deltaY > 0)
+                {
+                    dialCurrentScroll = dialCurrentScroll + 2
+
+                    if (currentCode % 2 == 0) {
+                        StepsIndicator.innerHTML = ""
+                        currentCode = 0;
+                    } else {
+                        var checkScroll = dialCurrentScroll
+                        if (checkScroll > 0) {
+                            checkScroll = checkScroll - 360
+                        }
+
+                        var currentAngle = checkScroll * -1
+
+                        if (currentAngle == dialCode[currentCode]) {
+                            if (currentCode == 1) 
+                                StepsIndicator.innerHTML += "0"
+
+                            if (currentCode == 3) 
+                                StepsIndicator.innerHTML += "6"
+
+                            currentCode++;
+                        }
+                    }
+                }
+
+                if (dialCurrentScroll == 360 || dialCurrentScroll == -360) {
+                    dialCurrentScroll = 0;
+                }
+                dialLock.style.transform = `rotate(${dialCurrentScroll}deg)`; 
 
 
-            var TablecontainerWidth = TableContainer.offsetWidth
-            var TablecontainerHeight = TableContainer.offsetHeight
-            var TabletranslatePosition = {x: windowCenter.w + -mousePositionFromCenter.x - (TablecontainerWidth / 2), y: windowCenter.h + -mousePositionFromCenter.y - (TablecontainerHeight / 2), speed: 0.5}
-            TableContainer.style.transform = "translate(" + TabletranslatePosition.x * TabletranslatePosition.speed + "px, " + TabletranslatePosition.y * TabletranslatePosition.speed + "px)"
+                console.log(currentCode)
+                if (currentCode == 4) {
+                    OpenSafe();
+                }
+            });
 
+            function OpenSafe() {
+                var VaultContainer = document.getElementsByClassName("VaultDoorContainer")[0]
+                var LeftDoor = document.getElementsByClassName("DoorLeft")[0]
+                var RightDoor = document.getElementsByClassName("DoorRight")[0]
+                
+                LeftDoor.classList.add("SafeLeftOpen");
+                RightDoor.classList.add("SafeRightOpen");
 
-            /* var HandcuffscontainerWidth = HandcuffsContainer.offsetWidth
-            var HandcuffscontainerHeight = HandcuffsContainer.offsetHeight
-            var HandcuffstranslatePosition = {x: windowCenter.w + -mousePositionFromCenter.x - (HandcuffscontainerWidth / 2), y: windowCenter.h + -mousePositionFromCenter.y - (HandcuffscontainerHeight / 2), speed: 0.5}
-            HandcuffsContainer.style.transform = "translate(" + HandcuffstranslatePosition.x * HandcuffstranslatePosition.speed + "px, " + HandcuffstranslatePosition.y * HandcuffstranslatePosition.speed + "px)" */
-        };
+                setTimeout(() => {
+                    VaultContainer.style.backgroundColor  = "transparent";
+                }, 100);
 
-
-        document.onkeypress = function (e) {
-            e = e || window.event;
-            if (e.keyCode == 32) {
-                OpenSafe();
+                setTimeout(() => {
+                    SlideFile();
+                }, 1000);
             }
-        };
-    </script>
-</body>
+
+            function SlideFile() {
+                slideAmount = 0;
+
+                FlipSecretFileContainer = document.getElementsByClassName("FlipSecretFileContainer")[0]
+
+                FlipSecretFileContainer.classList.add("OnScreen");
+
+                setTimeout(() => {
+                    OpenFile();
+                }, 2000);
+            }
+
+            function OpenFile() {
+                var FrontFileImage = document.getElementsByClassName("FrontFileImage")[0]
+
+                FrontFileImage.classList.add("FileOpen");
+
+                setTimeout(() => {
+                    FrontFileImage.src = "back_file.png";
+                    FrontFileImage.style.zIndex = zindexFlips
+                    zindexFlips++;
+
+                    FlipSecretFileContainer = document.getElementsByClassName("FlipSecretFileContainer")[0]
+                    FlipSecretFileContainer.style.transition = "none";
+                    canMove = true;
+                }, 300);
+            }
+
+            window.onbeforeunload = function () {
+                
+                window.scrollTo(0, 0);
+            }
+
+
+            var AllLinks = document.getElementsByTagName("a")
+
+            for (var i = 0; i < AllLinks.length; i++) {
+                AllLinks[i].onmouseup = (ev) => {
+                    var thisElem = ev.target;
+                    window.open(thisElem.dataset.link, '_blank');
+                };
+
+                AllLinks[i].onmouseover = (ev) => {
+                    readyForEvents = false;
+                };
+
+                AllLinks[i].onmouseout = (ev) => {
+                    readyForEvents = true;
+                };
+            }
+
+            var AllPages = document.getElementsByClassName("Pages")
+            var readyForEvents = false
+
+            for (var i = 0; i < AllPages.length; i++) {
+                AllPages[i].onmouseup = (ev) => {
+                    var thisElem = ev.target;
+                    if (thisElem.classList[0] == "Pages") return;
+                    if (readyForEvents == false) return;
+                    var imageElem = thisElem;
+
+                    if (thisElem.tagName != "IMG") 
+                        imageElem = thisElem.children[0]
+
+                    if (thisElem.classList[1] == "PageOpen" || thisElem.classList[2] == "PageOpen") {
+                        thisElem.classList.remove("PageOpen");
+
+                        setTimeout(() => {
+                            var pageTexts = thisElem.children
+                            for (var j = 0; j < pageTexts.length; j++) {
+                                var elemType = pageTexts[j].tagName
+                                if (elemType == "P") {
+                                    var thisText = pageTexts[j];
+
+                                    thisText.style.opacity = "100%";
+                                }
+                            }
+                            imageElem.src = imageElem.dataset.originalimage;
+                            thisElem.style.zIndex = zindexFlips
+                            zindexFlips++;
+                        }, 300);
+                    } else {
+                        
+                        thisElem.classList.add("PageOpen");
+
+                        setTimeout(() => {
+                            var pageTexts = thisElem.children
+                            for (var j = 0; j < pageTexts.length; j++) {
+                                var elemType = pageTexts[j].tagName
+                                if (elemType == "P") {
+                                    var thisText = pageTexts[j];
+
+                                    thisText.style.opacity = "0%";
+                                }
+                            }
+                            imageElem.src = "scramble_page.jpg";
+                            thisElem.style.zIndex = zindexFlips
+                            zindexFlips++;
+                        }, 300);
+                    }
+                };
+            }
+
+            readyForEvents = true
+
+
+            
+
+            document.onmousemove = function(ev){
+
+                if (!canMove) return;
+
+                FlipSecretFileContainer = document.getElementsByClassName("FlipSecretFileContainer")[0]
+                TableContainer = document.getElementsByClassName("Table")[0]
+                HandcuffsContainer = document.getElementsByClassName("HandcuffsContainer")[0]
+
+                var windowWidth = window.innerWidth
+                var windowHeight = window.innerHeight
+
+                var windowCenter = {w: windowWidth / 2, h: windowHeight / 2}
+                var mousePositionFromCenter = {x: ev.clientX - windowCenter.w, y: ev.clientY - windowCenter.h} 
+
+
+
+                var containerWidth = FlipSecretFileContainer.offsetWidth
+                var containerHeight = FlipSecretFileContainer.offsetHeight
+                var FiletranslatePosition = {x: windowCenter.w + -mousePositionFromCenter.x - (containerWidth / 2), y: windowCenter.h + -mousePositionFromCenter.y - (containerHeight / 2) + slideAmount, speed: 0.52}
+                FlipSecretFileContainer.style.transform = "translate(" + FiletranslatePosition.x * FiletranslatePosition.speed + "px, " + FiletranslatePosition.y * FiletranslatePosition.speed + "px)"
+
+
+                var TablecontainerWidth = TableContainer.offsetWidth
+                var TablecontainerHeight = TableContainer.offsetHeight
+                var TabletranslatePosition = {x: windowCenter.w + -mousePositionFromCenter.x - (TablecontainerWidth / 2), y: windowCenter.h + -mousePositionFromCenter.y - (TablecontainerHeight / 2), speed: 0.5}
+                TableContainer.style.transform = "translate(" + TabletranslatePosition.x * TabletranslatePosition.speed + "px, " + TabletranslatePosition.y * TabletranslatePosition.speed + "px)"
+
+
+                /* var HandcuffscontainerWidth = HandcuffsContainer.offsetWidth
+                var HandcuffscontainerHeight = HandcuffsContainer.offsetHeight
+                var HandcuffstranslatePosition = {x: windowCenter.w + -mousePositionFromCenter.x - (HandcuffscontainerWidth / 2), y: windowCenter.h + -mousePositionFromCenter.y - (HandcuffscontainerHeight / 2), speed: 0.5}
+                HandcuffsContainer.style.transform = "translate(" + HandcuffstranslatePosition.x * HandcuffstranslatePosition.speed + "px, " + HandcuffstranslatePosition.y * HandcuffstranslatePosition.speed + "px)" */
+            };
+
+
+            document.onkeypress = function (e) {
+                e = e || window.event;
+                if (e.keyCode == 32) {
+                    OpenSafe();
+                }
+            };
+        </script>
+    </body>
 </html>
