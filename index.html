@@ -13,6 +13,11 @@
         * {
             user-select: none;
         }
+
+        @font-face {
+            font-family: Typewriter;
+            src: url(JMHTypewriter.ttf);
+        }
         
         @font-face {
             font-family: NamunPen;
@@ -151,8 +156,8 @@
             background-size: contain;
             background-position: center;
             transform: rotateY(180deg);
-            top: 70%;
-            left: 3%;
+            top: 21%;
+            left: 11%;
         }
 
         .NoteMessage {
@@ -162,7 +167,7 @@
             height: 100%;
             text-align: center;
             transform: rotateY(180deg) rotate(3deg);
-            top: 25%;
+            top: 20%;
         }
 
         .NoteCode {
@@ -284,33 +289,46 @@
             pointer-events: none;
         }
 
+        .ClickTutorial {
+            pointer-events: none;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 5%;
+            left: 81%;
+            opacity: 100%;
+            transition: opacity 0.3s;
+        }
+
         .RecordPageContainer p {
             position: absolute;
             pointer-events: none;
             font-weight: bold;
-            font-size: 13px;
+            font-size: 12px;
+            font-family: Typewriter;
+            letter-spacing: 0.5px;
         }
 
         .RecordNumber {
-            top: 15.5%;
+            top: 15.6%;
             left: 20.2%;
             text-align: center;
         }
 
         .RecordDate {
-            top: 20.9%;
-            left: 21.8%;
+            top: 21.1%;
+            left: 21%;
             text-align: center;
         }
 
         .RecordTitle {
-            top: 24.5%;
+            top: 24.7%;
             left: 20%;
             text-align: left;
         }
 
         .RecordDescription {
-            top: 28.3%;
+            top: 28.4%;
             left: 25%;
             text-align: left;
         }
@@ -318,7 +336,7 @@
         .RecordDescription2 {
             width: 81%;
             height: 55.3%;
-            top: 30.8%;
+            top: 30.9%;
             left: 9%;
             text-align: left;
             line-height: 33px;
@@ -329,27 +347,31 @@
             pointer-events: all;
         }
 
+        a:hover {
+            cursor: pointer;
+        }
+
 
         .CriminalName {
-            top: 19.6%;
+            top: 19.7%;
             left: 17%;
             text-align: left;
         }
 
         .CriminalMaidenName {
             top: 23.3%;
-            left: 18%;
+            left: 18.1%;
             text-align: left;
         }
 
         .CriminalPhone {
-            top: 23.2%;
+            top: 23.3%;
             left: 58%;
             text-align: left;
         }
 
         .CriminalAddress {
-            top: 26.5%;
+            top: 26.6%;
             left: 27%;
             text-align: left;
         }
@@ -380,7 +402,7 @@
 
         .CriminalState {
             top: 35.5%;
-            left: 18.7%;
+            left: 18.2%;
             text-align: left;
         }
 
@@ -409,32 +431,33 @@
         }
 
         .CriminalCrimes {
-            top: 43.7%;
-            left: 16.7%;
+            top: 45.7%;
+            left: 7%;
             text-align: left;
+            line-height: 23px;
         }
 
         .CriminalConsent {
             top: 66.4%;
-            left: 6.5%;
+            left: 7.1%;
             text-align: left;
         }
 
         .CriminalEmail {
-            top: 72.7%;
+            top: 72.8%;
             left: 7%;
             text-align: left;
         }
 
         .CriminalSignature {
-            top: 76.5%;
-            left: 20%;
+            top: 76.7%;
+            left: 18.8%;
             text-align: left;
         }
 
         .CriminalDate {
-            top: 76.5%;
-            left: 69.5%;
+            top: 76.7%;
+            left: 69.1%;
             text-align: left;
         }
 
@@ -506,83 +529,92 @@
                         <p class="RecordNumber">10</p>
                         <p class="RecordDate">N/A</p>
                         <p class="RecordTitle">Behind The Scenes</p>
-                        <p class="RecordDescription">Thank you for taking the time to read about my career. You may be wondering why</p>
-                        <p class="RecordDescription2">I chose to present this information as a criminal record. The idea originated as a way to create an interactive portfolio and protect my identity. However, as I was developing the project, I began to envision it as a criminal program, with programming as a prohibited and dangerous activity. I hope you enjoyed it as much as I did while creating it.</p>
+                        <p class="RecordDescription">Thank you for taking the time to read about my career. You</p>
+                        <p class="RecordDescription2">may be wondering why I chose to present this information as a criminal record. The idea originated as a way to create an interactive portfolio and protect my identity. However, as I was developing the project, I began to envision it as a criminal program, with programming as a prohibited and dangerous activity. I hope you enjoyed it as much as I did while creating it.</p>
                     </div>
                     <div class="RecordPageContainer PageFile">
                         <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
                         <p class="RecordNumber">9</p>
                         <p class="RecordDate">Present...</p>
                         <p class="RecordTitle">Game University - Second Year</p>
-                        <p class="RecordDescription">We know that in this year, Gonçalo Valente has already begun working on three</p>
-                        <p class="RecordDescription2">Unity projects, one website, and a criminal record.</p>
+                        <p class="RecordDescription">We know that in this year, Gonçalo Valente has already begun</p>
+                        <p class="RecordDescription2">working on three Unity projects, one website, and a criminal record.</p>
                     </div>
                     <div class="RecordPageContainer PageFile">
                         <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
                         <p class="RecordNumber">8</p>
                         <p class="RecordDate">15/10/2021</p>
                         <p class="RecordTitle">Game University</p>
-                        <p class="RecordDescription">After leaving the world of Fivem scripting behind, Gonçalo Valente decided</p>
-                        <p class="RecordDescription2">to return to game development. He enrolled in IPMAIA to learn the Unity game engine, and quickly adapted to the software. He excelled in his classes, consistently earning the highest grades and even helping his classmates prepare for exams. It was at this point that we became aware of Gonçalo's potential to be a dangerous programmer.</p>
+                        <p class="RecordDescription">After leaving the world of Fivem scripting behind, Gonçalo Valente</p>
+                        <p class="RecordDescription2">decided to return to game development. He enrolled in IPMAIA to learn the Unity game engine, and quickly adapted to the software. He excelled in his classes, consistently earning the highest grades and even helping his classmates prepare for exams. It was at this point that we became aware of Gonçalo's potential to be a dangerous programmer.</p>
                     </div>
                     <div class="RecordPageContainer PageFile">
                         <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
                         <p class="RecordNumber">7</p>
                         <p class="RecordDate">13/04/2021</p>
                         <p class="RecordTitle">Several Jobs - Remote</p>
-                        <p class="RecordDescription">Gonçalo Valente became involved with a group of Americans who were paying</p>
-                        <p class="RecordDescription2">four-digit monthly for his work. During our investigation of his bank account, we discovered transactions with a suspect living in America, with descriptions indicating that the transactions were related to programming work. In addition, we found three three-digit transactions from Thailand, two three-digit transactions from England, and over 25 other transactions from various locations around the world for similar work. This suggests that Gonçalo was part of a global network of programming professionals.</p>
+                        <p class="RecordDescription">Gonçalo Valente became involved with a group of Americans who</p>
+                        <p class="RecordDescription2">were paying four-digit monthly for his work. During our investigation of his bank account, we discovered transactions with a suspect living in America, with descriptions indicating that the transactions were related to programming work. In addition, we found three three-digit transactions from Thailand, two three-digit transactions from England, and over 25 other transactions from various locations around the world for similar work. This suggests that Gonçalo was part of a global network of programming professionals.</p>
+                    </div>
+                    <div class="RecordPageContainer PageFile">
+                        <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
+                        <p class="RecordNumber">6.1</p>
+                        <p class="RecordDate">15/09/2019</p>
+                        <p class="RecordTitle">Successful Results</p>
+                        <p class="RecordDescription">After completing these and other projects, Gonçalo Valente</p>
+                        <p class="RecordDescription2">applied to the online marketplace of his dreams. However, he was not alone in his pursuit, as over 400 other programmers also applied to the marketplace. Despite this competition, Gonçalo was accepted and impressed the owner of the marketplace. At the time, the marketplace only had a team of 10 workers, and only the best programmers were allowed to join.<br><br>Gonçalo Valente's most popular script on the marketplace was:<br>[Advanced Cryptocurrency (Made with HTML, CSS, JS, LUA and SQL)] - <a data-link="https://modit.store/products/kofcoin-advanced-crypto-mining-script?variant=39396309696695">Source Here</a></p>
                     </div>
                     <div class="RecordPageContainer PageFile">
                         <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
                         <p class="RecordNumber">6</p>
                         <p class="RecordDate">15/09/2019</p>
                         <p class="RecordTitle">Freelancing In The Market</p>
-                        <p class="RecordDescription">After spending his summer holidays working on programming projects, Gonçalo</p>
-                        <p class="RecordDescription2">Valente decided to start earning money for his work. His goal was to be accepted into a successful online marketplace for freelance programming services, where only the best programmers were allowed to sell their services. Over the course of a year, he worked on a variety of private projects as a freelancer, offering low prices in order to establish himself as one of the top programmers in the marketplace.<br><br>Here are some of the projects that Gonçalo Valente worked on over the course of the year:<br>[Tablet (Made with HTML, CSS, JS and LUA)] - <a data-link="https://www.youtube.com/watch?v=VdajYx5xCWU">Source Here</a><br>[Phone (Made with HTML, CSS, JS and LUA)] - <a data-link="https://www.youtube.com/watch?v=TZ9mO1YYe9U">Source Here</a><br><br>After completing these and other projects, Gonçalo Valente applied to the online marketplace of his dreams. However, he was not alone in his pursuit, as over 400 other programmers also applied to the marketplace. Despite this competition, Gonçalo was accepted and impressed the owner of the marketplace. At the time, the marketplace only had a team of 10 workers, and only the best programmers were allowed to join.<br>Gonçalo Valente's most popular script on the marketplace was:<br>[Advanced Cryptocurrency (Made with HTML, CSS, JS, LUA and SQL)] - <a data-link="https://modit.store/products/kofcoin-advanced-crypto-mining-script?variant=39396309696695">Source Here</a></p>
+                        <p class="RecordDescription">After spending his summer holidays working on programming</p>
+                        <p class="RecordDescription2">projects, Gonçalo Valente decided to start earning money for his work. His goal was to be accepted into a successful online marketplace for freelance programming services, where only the best programmers were allowed to sell their services. Over the course of a year, he worked on a variety of private projects as a freelancer, offering low prices in order to establish himself as one of the top programmers in the marketplace.<br><br>Here are some of the projects that Gonçalo Valente worked on over the course of the year:<br>[Tablet (Made with HTML, CSS, JS and LUA)] - <a data-link="https://www.youtube.com/watch?v=VdajYx5xCWU">Source Here</a><br>[Phone (Made with HTML, CSS, JS and LUA)] - <a data-link="https://www.youtube.com/watch?v=TZ9mO1YYe9U">Source Here</a></p>
                     </div>
                     <div class="RecordPageContainer PageFile">
                         <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
                         <p class="RecordNumber">5</p>
                         <p class="RecordDate">01/02/2019</p>
                         <p class="RecordTitle">An Illegal Internship</p>
-                        <p class="RecordDescription">In 2019, Gonçalo Valente was offered a five-month internship at a company called</p>
-                        <p class="RecordDescription2">XDPEOPLE, which specializes in creating software for retail stores and restaurants. Although Gonçalo was not at the level of expertise required for the internship, he was not deterred. During the internship, he discovered the invaluable tool Stackoverflow, which allowed him to quickly and easily find answers to any programming questions he had. This made it possible for him to learn faster and be more successful in the internship.</p>
+                        <p class="RecordDescription">In 2019, Gonçalo Valente was offered a five-month internship at a</p>
+                        <p class="RecordDescription2">company called XDPEOPLE, which specializes in creating software for retail stores and restaurants. Although Gonçalo was not at the level of expertise required for the internship, he was not deterred. During the internship, he discovered the invaluable tool Stackoverflow, which allowed him to quickly and easily find answers to any programming questions he had. This made it possible for him to learn faster and be more successful in the internship.</p>
                     </div>
                     <div class="RecordPageContainer PageFile">
                         <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
                         <p class="RecordNumber">4</p>
                         <p class="RecordDate">10/01/2018</p>
                         <p class="RecordTitle">Start Scripting</p>
-                        <p class="RecordDescription">Despite learning many programming languages in school, Goncalo Valente continued</p>
-                        <p class="RecordDescription2">to explore new languages on his own. He discovered LUA and began using it to create scripts for the game Fivem. He became interested in the possibilities of the language and began working on a variety of projects, both public and private, within the Fivem community. It is known that he has completed at least 50 projects, but it is believed that he has completed over 150 in total.<br>Here are some links to public projects that Goncalo Valente has published:<br>[Cooker Job (His first release, made with LUA) - 30000+ Views] - <a data-link="https://forum.cfx.re/t/esx-cooker-job-based-on-unicorn-job/256558">Source Here</a><br>[Garage (Most Popular, made with LUA and SQL) - 85000+ Views] - <a data-link="https://forum.cfx.re/t/esx-kuana-garage-3-0-make-your-garage-system-more-realistic/996140">Source Here</a></p>
+                        <p class="RecordDescription">Despite learning many programming languages in school, Goncalo</p>
+                        <p class="RecordDescription2">Valente continued to explore new languages on his own. He discovered LUA and began using it to create scripts for the game Fivem. He became interested in the possibilities of the language and began working on a variety of projects, both public and private, within the Fivem community. It is known that he has completed at least 50 projects, but it is believed that he has completed over 150 in total.<br><br>Here are some links to public projects that Goncalo Valente has published:<br>[Cooker Job (His first release, made with LUA) - 30000+ Views] - <a data-link="https://forum.cfx.re/t/esx-cooker-job-based-on-unicorn-job/256558">Source Here</a><br>[Garage (Most Popular, made with LUA and SQL) - 85000+ Views] - <a data-link="https://forum.cfx.re/t/esx-kuana-garage-3-0-make-your-garage-system-more-realistic/996140">Source Here</a></p>
                     </div>
                     <div class="RecordPageContainer PageFile">
                         <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
                         <p class="RecordNumber">3</p>
                         <p class="RecordDate">15/09/2017</p>
                         <p class="RecordTitle">A Dangerous Path</p>
-                        <p class="RecordDescription">After completing grade 9, Goncalo Valente applied to a professional school and</p>
-                        <p class="RecordDescription2">was accepted into a programming course. This course taught a variety of languages, including C, C#, HTML, CSS, JS, Java, and SQL. The course had a profound impact on Goncalo's life and career.</p>
+                        <p class="RecordDescription">After completing grade 9, Goncalo Valente applied to a professional</p>
+                        <p class="RecordDescription2">school and was accepted into a programming course. This course taught a variety of languages, including C, C#, HTML, CSS, JS, Java, and SQL. The course had a profound impact on Goncalo's life and career.</p>
                     </div>
                     <div class="RecordPageContainer PageFile">
                         <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
                         <p class="RecordNumber">2</p>
                         <p class="RecordDate">25/10/2016</p>
                         <p class="RecordTitle">Gonçalo Valente's First Game</p>
-                        <p class="RecordDescription">After his initial success, Goncalo Valente continued to pursue programming.</p>
-                        <p class="RecordDescription2">He discovered the software Construct 2, which offered a simple and easy-to-use programming language. With this tool, he was able to create his first game, which was inspired by the popular game Flappy Bird. The game quickly became popular among his classmates, and he received positive feedback. Encouraged by this response, he spent more time developing additional levels for the game.</p>
+                        <p class="RecordDescription">After his initial success, Goncalo Valente continued to pursue</p>
+                        <p class="RecordDescription2">programming. He discovered the software Construct 2, which offered a simple and easy-to-use programming language. With this tool, he was able to create his first game, which was inspired by the popular game Flappy Bird. The game quickly became popular among his classmates, and he received positive feedback. Encouraged by this response, he spent more time developing additional levels for the game.</p>
                     </div>
                     <div class="RecordPageContainer PageFile">
                         <img class="CriminalRecord" src="Record_Criminal_RECORD.png" data-originalimage="Record_Criminal_RECORD.png" alt="">
                         <p class="RecordNumber">1</p>
                         <p class="RecordDate">13/07/2016</p>
                         <p class="RecordTitle">The Start Of A Criminal Life</p>
-                        <p class="RecordDescription">Goncalo Valente began exploring the world of programming by studying HTML</p>
-                        <p class="RecordDescription2">and CSS. He began creating simple text designs, incorporating images and background colors, and experimenting with font styles. He also learned to link multiple pages and change page titles. With these skills, he was able to create a simple detective game with clues and rewards.</p>
+                        <p class="RecordDescription">Goncalo Valente began exploring the world of programming by</p>
+                        <p class="RecordDescription2">studying HTML and CSS. He began creating simple text designs, incorporating images and background colors, and experimenting with font styles. He also learned to link multiple pages and change page titles. With these skills, he was able to create a simple detective game with clues and rewards.</p>
                     </div>
                     <div class="RecordPageContainer PageFile">
                         <img class="CriminalRecord" src="Record_Criminal2.png" data-originalimage="Record_Criminal2.png" alt="">
+                        <img class="ClickTutorial" src="clickon.png" alt="">
                         <p class="CriminalName">Gonçalo Santana De Miranda Pulido Valente</p>
                         <p class="CriminalMaidenName">N/A</p>
                         <p class="CriminalPhone">+351 964839246</p>
@@ -596,7 +628,7 @@
                         <p class="CriminalSOC">*********</p>
                         <p class="CriminalCC">*********</p>
                         <p class="CriminalIssued">N/A</p>
-                        <p class="CriminalCrimes">Joining the coding community and spend countless nights working on private projects.</p>
+                        <p class="CriminalCrimes">Joining the coding community and spend countless nights working on private<br>projects.</p>
                         <p class="CriminalConsent">N/A</p>
                         <p class="CriminalEmail">goncalo.p.valente@hotmail.com</p>
                         <p class="CriminalSignature">Gonçalo Valente</p>
@@ -620,6 +652,7 @@
             var slideAmount = window.innerHeight
             var canMove = false;
             var firstScroll = true
+            var firstClick = true
 
             dialLock.addEventListener('wheel', function() {
                 if (firstScroll) {
@@ -793,6 +826,12 @@
                     } else {
                         
                         thisElem.classList.add("PageOpen");
+
+                        if (firstClick) {
+                            firstClick = false;
+                            var ClickTutorial = document.getElementsByClassName("ClickTutorial")[0]
+                            ClickTutorial.style.opacity = "0%"
+                        }
 
                         setTimeout(() => {
                             var pageTexts = thisElem.children
